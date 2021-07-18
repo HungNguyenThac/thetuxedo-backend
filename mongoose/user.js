@@ -1,11 +1,14 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/my_database", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-});
+mongoose.connect(
+  "mongodb+srv://nguyenthachung:hoagiaytranga9@cluster0.qaemv.mongodb.net/thetuxedo?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  }
+);
 
 const userSchema = mongoose.Schema(
   {
