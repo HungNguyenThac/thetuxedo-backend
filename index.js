@@ -1,21 +1,11 @@
-const express = require("express");
-const path = require("path");
-var bodyParser = require("body-parser");
-var cookieParser = require("cookie-parser");
-var jwt = require("jsonwebtoken");
-const routesLogin = require("./routes/login");
-const routesSignUp = require("./routes/signUp");
-const routesForgetPassWord = require("./routes/forgetPassword");
-const routesDashboard = require("./routes/dashboard");
-const routesLoginWgg = require("./routes/loginWgg");
-const routesGetData = require("./routes/getDataUser");
-const routesAddInfor = require("./routes/addInfor");
-const routesAddCart = require("./routes/addCart");
-const routesAddBill = require("./routes/addbill");
-const routesAddHistory = require("./routes/addHistory");
-const routesChangePassword = require("./routes/changePassword");
-var cors = require("cors");
+const express = require("./src/node_modules/express");
+const bodyParser = require("./src/node_modules/body-parser");
+const cookieParser = require("./src/node_modules/cookie-parser");
 const app = express();
+const cors = require("./src/node_modules/cors/lib");
+const https = require("https");
+const routesAccount = require("./src/routers/account.routes");
+const routesUser = require("./src/routers/user.routes");
 
 const port = 9527;
 app.use(cors());
@@ -24,17 +14,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.use("/user", routesLogin);
-app.use("/user", routesSignUp);
-app.use("/user", routesGetData);
-app.use("/user", routesAddInfor);
-app.use("/user", routesAddBill);
-app.use("/user", routesAddHistory);
-app.use("/user", routesAddCart);
-app.use("/user", routesLoginWgg);
-app.use("/user", routesDashboard);
-app.use("/user", routesForgetPassWord);
-app.use("/user", routesChangePassword);
+app.use("/account", routesAccount);
+app.use("/user", routesUser);
+
+app.use(express.static(path.join(__dirname, "client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
+
+// Auto wake up heroku
+app.get("/apis/wakeup-heroku", (req, res) => res.send("ok"));
+const timer = 25 * 60 * 1000; // 25 minutes
+setInterval(() => {
+  https.get("https://thetuxedo.herokuapp.com/apis/wakeup-heroku");
+}, timer);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
