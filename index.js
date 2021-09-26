@@ -6,9 +6,10 @@ const cors = require("cors");
 const https = require("https");
 const routesAccount = require("./src/routers/account.routes");
 const routesUser = require("./src/routers/user.routes");
+const corsConfig = require("./src/configs/cors.configs");
 const path = require("path");
 
-app.use(cors());
+app.use(cors(corsConfig));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
