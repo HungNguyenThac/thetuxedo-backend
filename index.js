@@ -17,10 +17,11 @@ app.use(cookieParser());
 app.use("/account", routesAccount);
 app.use("/user", routesUser);
 
-app.use(express.static(path.join(__dirname, "app/client/build")));
+app.use(express.static(path.join(__dirname, "/client/build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+app.get("*", function (req, res) {
+  const index = path.join(__dirname, "build", "index.html");
+  res.sendFile(index);
 });
 
 // Auto wake up heroku
