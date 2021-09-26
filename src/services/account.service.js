@@ -2,6 +2,7 @@ const VerifyCodeModel = require("../mongoose/codeVerify.model");
 const userModel = require("../mongoose/user.model");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
+const bcrypt = require("bcrypt");
 
 exports.userModelFindOneLoginName = (loginName) => {
   try {
@@ -102,7 +103,7 @@ exports.CreateVerifyCode = (email = "", verifyCode = "") => {
 exports.updateVerifyCode = (email = "", verifyCode = "") => {
   try {
     const time = Date.now();
-    return VerifyCodeModel.findOneAndUpdate(
+    return VerifyCodeModel.useFindAndModify(
       { email },
       { code: verifyCode, createdDate: time },
       {
@@ -117,7 +118,7 @@ exports.updateVerifyCode = (email = "", verifyCode = "") => {
 
 exports.userModelChangePassword = (email, hashedPassword) => {
   try {
-    return userModel.findOneAndUpdate(
+    return userModel.useFindAndModify(
       { email: email },
       {
         password: hashedPassword,
@@ -150,7 +151,7 @@ exports.compareBcrypt = (password, response) => {
 
 exports.updatePassword = (id, hashedPassword) => {
   try {
-    return userModel.findOneAndUpdate(
+    return userModel.useFindAndModify(
       { _id: id },
       {
         password: hashedPassword,

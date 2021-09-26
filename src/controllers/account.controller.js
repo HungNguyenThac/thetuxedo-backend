@@ -22,6 +22,7 @@ const { userModelFindOneId } = require("../services/user.service");
 exports.checkLoginWithLoginName = async (req, res, next) => {
   try {
     const { loginName, password } = req.body;
+    console.log(25, loginName);
     const responseName = await userModelFindOneLoginName(loginName);
     if (responseName === null) {
       next();
