@@ -6,6 +6,7 @@ const cors = require("./src/node_modules/cors/lib");
 const https = require("https");
 const routesAccount = require("./src/routers/account.routes");
 const routesUser = require("./src/routers/user.routes");
+const path = require("path");
 
 const port = 9527;
 app.use(cors());
@@ -33,4 +34,3 @@ setInterval(() => {
 app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
-np;
