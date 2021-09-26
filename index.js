@@ -8,7 +8,6 @@ const routesAccount = require("./src/routers/account.routes");
 const routesUser = require("./src/routers/user.routes");
 const path = require("path");
 
-const port = 9527;
 app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -31,6 +30,5 @@ setInterval(() => {
   https.get("https://thetuxedo.herokuapp.com/apis/wakeup-heroku");
 }, timer);
 
-app.listen(process.env.PORT || port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+const port = process.env.PORT || 9725;
+app.listen(port);
