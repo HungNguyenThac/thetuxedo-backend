@@ -1,7 +1,7 @@
 const VerifyCodeModel = require("../mongoose/codeVerify.model");
 const userModel = require("../mongoose/user.model");
 const jwt = require("jsonwebtoken");
-const bycrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 
 exports.userModelFindOneLoginName = (loginName) => {
