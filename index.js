@@ -36,5 +36,9 @@ setInterval(() => {
   https.get("https://thetuxedo.herokuapp.com/apis/wakeup-heroku");
 }, timer);
 
+// set port change deploy heroku
 const port = process.env.PORT || 9725;
+
+//set port dev
+const port = 9527;
 app.listen(port);

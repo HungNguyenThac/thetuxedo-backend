@@ -27,7 +27,9 @@ exports.getDataUser = async (req, res) => {
 
 exports.checkToken = async (req, res, next) => {
   const token = req.headers.authorization;
-  if (token === undefined) {
+  console.log(token);
+  if (token === undefined || token.length === 0) {
+    res.json({ status: 402, mess: "Token không hợp lệ" });
   } else if (token.length >= 1) {
     const id = verifyToken(token);
     const response = await userModelFindOneId(id);

@@ -103,7 +103,7 @@ exports.CreateVerifyCode = (email = "", verifyCode = "") => {
 exports.updateVerifyCode = (email = "", verifyCode = "") => {
   try {
     const time = Date.now();
-    return VerifyCodeModel.useFindAndModify(
+    return VerifyCodeModel.findOneAndUpdate(
       { email },
       { code: verifyCode, createdDate: time },
       {
@@ -118,7 +118,7 @@ exports.updateVerifyCode = (email = "", verifyCode = "") => {
 
 exports.userModelChangePassword = (email, hashedPassword) => {
   try {
-    return userModel.useFindAndModify(
+    return userModel.findOneAndUpdate(
       { email: email },
       {
         password: hashedPassword,
@@ -151,7 +151,7 @@ exports.compareBcrypt = (password, response) => {
 
 exports.updatePassword = (id, hashedPassword) => {
   try {
-    return userModel.useFindAndModify(
+    return userModel.findOneAndUpdate(
       { _id: id },
       {
         password: hashedPassword,
