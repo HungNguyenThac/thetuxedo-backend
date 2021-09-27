@@ -32,5 +32,9 @@ setInterval(() => {
   https.get("https://thetuxedo-dev.herokuapp.com/apis/wakeup-heroku");
 }, timer);
 
+setInterval(() => {
+  https.get("https://thetuxedo.herokuapp.com/apis/wakeup-heroku");
+}, timer);
+
 const port = process.env.PORT || 9725;
 app.listen(port);
