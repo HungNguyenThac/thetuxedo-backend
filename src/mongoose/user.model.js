@@ -3,19 +3,22 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 const URI = process.env.DATABASE_URL;
-mongoose
-  .connect(URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
-  .then(() => {
-    console.log("Connected to DB");
-  })
-  .catch((err) => {
-    console.log("err", err);
-  });
+
+const connectToDB = async () => {
+  try {
+    await mongoose.connect(URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+    });
+    console.log("connected mongoDB");
+  } catch (error) {
+    console.log(`"connect err: " ${error}`);
+  }
+};
+
+connectToDB();
 
 const userSchema = mongoose.Schema({
   name: { type: String, default: "" },
