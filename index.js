@@ -26,15 +26,17 @@ app.get("*", function (req, res) {
 });
 
 // Auto wake up heroku
-app.get("/apis/wakeup-heroku", (req, res) => res.send("ok"));
-const timer = 25 * 60 * 1000; // 25 minutes
-setInterval(() => {
-  https.get("https://thetuxedo-dev.herokuapp.com/apis/wakeup-heroku");
-}, timer);
 
-setInterval(() => {
-  https.get("https://thetuxedo.herokuapp.com/apis/wakeup-heroku");
-}, timer);
+// app.get("/apis/wakeup-heroku", (req, res) => res.send("ok"));
+// const timer = 25 * 60 * 1000; // 25 minutes
+
+// setInterval(() => {
+//   https.get("https://thetuxedo-dev.herokuapp.com/apis/wakeup-heroku");
+// }, timer);
+
+// setInterval(() => {
+//   https.get("https://thetuxedo.herokuapp.com/apis/wakeup-heroku");
+// }, timer);
 
 // set port change deploy heroku
 const port = process.env.PORT || 9725;
