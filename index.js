@@ -18,12 +18,12 @@ app.use(cookieParser());
 app.use("/account", routesAccount);
 app.use("/user", routesUser);
 
-app.use(express.static(path.join(__dirname, "build")));
+// app.use(express.static(path.join(__dirname, "build")));
 
-app.get("*", function (req, res) {
-  const index = path.join(__dirname, "build", "index.html");
-  res.sendFile(index);
-});
+// app.get("*", function (req, res) {
+//   const index = path.join(__dirname, "build", "index.html");
+//   res.sendFile(index);
+// });
 
 // Auto wake up heroku
 
@@ -39,6 +39,7 @@ app.get("*", function (req, res) {
 // }, timer);
 
 // set port change deploy heroku
-const port = process.env.PORT || 9725;
+// const port = 9527;
+const port = process.env.PORT || 9527;
 
 app.listen(port);
