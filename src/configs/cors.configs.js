@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const corsConfig = {
   // Configures the Access-Control-Allow-Origin
-  origin: "https://thetuxedo-dev.vercel.app/",
+  origin: "https://thetuxedo-dev.vercel.app",
 
   // Configures the Access-Control-Allow-Methods
   methods: "GET, POST, OPTIONS, PUT, PATCH, DELETE",
@@ -15,7 +15,7 @@ const corsConfig = {
   credentials: true,
 
   //Configures the Access-Control-Expose-Headers
-  exposedHeaders: "Content-Range,X-Content-Range,Authorization",
+  exposedHeaders: "Content-Range,X-Content-Range,authorization",
 
   // Provides a status code to use for successful OPTIONS requests
   optionsSuccessStatus: 200,
